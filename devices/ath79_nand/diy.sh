@@ -3,8 +3,7 @@
 shopt -s extglob
 
 SHELL_FOLDER=$(dirname $(readlink -f "$0"))
-#bash $SHELL_FOLDER/../common/kernel_5.15.sh
 
+sed -i '/# start dockerd/,/# end dockerd/d' .config
 
-
-
+rm -rf feeds/kiddin9/xtables-wgobfs
