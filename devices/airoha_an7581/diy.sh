@@ -2,19 +2,12 @@
 
 shopt -s extglob
 
-rm -rf target/linux/generic target/linux/airoha/!(hack-6.18) package/kernel package/firmware package/boot package/utils/fitblk
+rm -rf package/boot target/linux/airoha/!(patches-6.12)
 
-git_clone_path main https://github.com/openwrt/openwrt package/kernel target/linux/generic
-git_clone_path master https://github.com/coolsnowwolf/lede target/linux/airoha package/boot package/firmware package/utils/fitblk
+git_clone_path airoha-gemtek-xr1710g https://github.com/akorshun/openwrt package/boot
+git_clone_path airoha-gemtek-xr1710g https://github.com/akorshun/openwrt mv target/linux/airoha
 
-wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/package/kernel/mt76/patches-6.18/110-mt7915-add-mt7916-cal-free-merge.patch -P package/kernel/mt76/patches/
+wget -N https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-25.12/target/linux/airoha/an7581/config-6.12 -P target/linux/airoha/an7581/
+wget -N https://github.com/openwrt/openwrt/raw/refs/heads/main/target/linux/airoha/patches-6.18/609-01-dt-bindings-clock-airoha-Add-additional-reset-for-PC.patch -P target/linux/airoha/patches-6.12/
 
-git_clone_path master https://github.com/coolsnowwolf/lede mv target/linux/generic/hack-6.18
-git_clone_path master https://github.com/coolsnowwolf/lede mv target/linux/airoha/hack-6.18
-
-wget -N https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/pending-6.18/613-netfilter_optional_tcp_window_check.patch -P target/linux/generic/pending-6.18/
-wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/target/linux/generic/pending-6.18/511-block-fitblk-initialize-device-before-probing.patch -P target/linux/generic/pending-6.18/
-
-rm -rf target/linux/airoha/patches-6.18/{801*,802*,804*,931-net-pcs*}
-
-rm -rf package/feeds/kiddin9/{quectel_QMI_WWAN,simcom_QMI_WWAN,fibocom_QMI_WWAN,quectel_MHI,rkp-ipid,fast-classifier} package/feeds/packages/{v4l2loopback,libpfring}
+sed -i "s/6.18/6.12/" target/linux/airoha/Makefile
