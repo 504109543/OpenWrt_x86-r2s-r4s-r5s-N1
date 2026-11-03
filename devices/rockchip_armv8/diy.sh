@@ -5,8 +5,6 @@ SHELL_FOLDER=$(dirname $(readlink -f "$0"))
 
 #bash $SHELL_FOLDER/../common/kernel_6.6.sh
 
-curl -sL "https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/26371.patch" | git apply
-
 sed -i 's/Os/O2/g' include/target.mk
 
 rm -rf package/boot target/linux/rockchip
