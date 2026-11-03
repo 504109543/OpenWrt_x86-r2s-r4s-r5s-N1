@@ -5,8 +5,6 @@ SHELL_FOLDER=$(dirname $(readlink -f "$0"))
 
 #bash $SHELL_FOLDER/../common/kernel_6.6.sh
 
-curl -sL "https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/26371.patch" | git apply
-
 sed -i 's/Os/O2/g' include/target.mk
 
 rm -rf package/boot target/linux/rockchip
@@ -21,7 +19,7 @@ wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/target/linux/
 
 sed -i "/KernelPackage,ptp/d" package/kernel/linux/modules/other.mk
 
-rm -rf target/linux/rockchip/armv8/base-files/etc/uci-defaults/13_opkg_update package/feeds/kiddin9/pcat-manager package/feeds/kiddin9/*_QMI_WWAN package/feeds/routing/batman-adv
+rm -rf target/linux/rockchip/armv8/base-files/etc/uci-defaults/13_opkg_update package/feeds/kiddin9/pcat-manager package/feeds/kiddin9/*_QMI_WWAN
 
 sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
 sed -i -e 's,wpad-openssl,wpad-basic-mbedtls,g' target/linux/rockchip/image/armv8.mk
