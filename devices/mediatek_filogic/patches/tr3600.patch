@@ -70,7 +70,7 @@ new file mode 100644
 index 00000000000000..d47e58414f631a
 --- /dev/null
 +++ b/target/linux/mediatek/dts/mt7987b-cudy-tr3600-v1.dts
-@@ -0,0 +1,192 @@
+@@ -0,0 +1,292 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +
 +/dts-v1/;
