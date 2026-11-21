@@ -43,7 +43,6 @@ sed -i 's/\bpcat-manager\b/swrt-pcat-manager luci-app-swrt-power/g' target/linux
 
 
 sed -i -e 's/6.18/6.12/' \
-       -e 's/ usb-modeswitch//' \
 	   target/linux/rockchip/Makefile
 
 echo "
